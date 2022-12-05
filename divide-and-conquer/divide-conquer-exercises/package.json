@@ -1,15 +1,15 @@
 {
-  "name": "prob-divide-conquer",
+  "name": "divide-and-conquer-exercises",
   "version": "1.0.0",
-  "description": "",
+  "description": "Divide and conquer exercises",
   "main": "count-zeroes.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jacob Eiferman",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^29.3.1"
   }
 }
