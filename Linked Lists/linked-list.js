@@ -62,26 +62,14 @@ class LinkedList {
 	/** pop(): return & remove last item. */
 
 	pop() {
-		let lastNode = this.tail;
-		let secondToLastNode;
-		console.log("tail", this.tail);
-		let currentNode = this.head;
-		while (currentNode) {
-			secondToLastNode = currentNode;
-			currentNode = currentNode.next;
-		}
-		console.log(currentNode);
-
-		this.tail = secondToLastNode;
-		console.log("tail", this.tail);
-		secondToLastNode.next = null;
-		this.length--;
-		return lastNode.val;
+		return this.removeAt(this.length - 1);
 	}
 
 	/** shift(): return & remove first item. */
 
-	shift() {}
+	shift() {
+		return this.removeAt(0);
+	}
 
 	/** getAt(idx): get val at idx. */
 
@@ -145,7 +133,17 @@ class LinkedList {
 
 	/** average(): return an average of all values in the list */
 
-	average() {}
+	average() {
+		let total = 0;
+		let count = 0;
+
+		while (count < this.length) {
+			let val = this.getAt(count);
+			total += val;
+			count++;
+		}
+		return total / (count + 1);
+	}
 }
 
 module.exports = LinkedList;
