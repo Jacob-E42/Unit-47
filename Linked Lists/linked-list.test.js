@@ -8,6 +8,7 @@ describe("push", function () {
 		expect(lst.length).toBe(1);
 		expect(lst.head.val).toBe(5);
 		expect(lst.tail.val).toBe(5);
+		expect(lst.tail.next).toBe(null);
 
 		lst.push(10);
 		expect(lst.length).toBe(2);
@@ -31,6 +32,7 @@ describe("unshift", function () {
 		expect(lst.length).toBe(1);
 		expect(lst.head.val).toBe(5);
 		expect(lst.tail.val).toBe(5);
+		expect(lst.tail.next).toBe(null);
 
 		lst.unshift(10);
 		expect(lst.length).toBe(2);

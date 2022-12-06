@@ -33,12 +33,14 @@ class LinkedList {
 
 	push(val) {
 		const newNode = new Node(val);
-		if (this.length === 0) {
+		if (!this.head) {
 			this.head = newNode;
 			this.tail = newNode;
+		} else {
+			this.tail.next = newNode;
+			this.tail = newNode;
 		}
-		this.tail.next = newNode;
-		this.tail = newNode;
+
 		this.length++;
 	}
 
@@ -46,12 +48,14 @@ class LinkedList {
 
 	unshift(val) {
 		const newNode = new Node(val);
-		if (this.length === 0) {
+		if (!this.head) {
 			this.head = newNode;
-			this.tail = newNode;
+			this.tail = this.head;
+		} else {
+			newNode.next = this.head;
+			this.head = newNode;
 		}
-		newNode.next = this.head;
-		this.head = newNode;
+
 		this.length++;
 	}
 
@@ -89,6 +93,9 @@ class LinkedList {
 	/** setAt(idx, val): set val at idx to val */
 
 	setAt(idx, val) {
+		if (idx >= this.length || idx < 0) {
+			throw new Error("Invalid index.");
+		}
 		this._get(idx).val = val;
 	}
 
@@ -96,13 +103,16 @@ class LinkedList {
 
 	insertAt(idx, val) {
 		if (idx < 0 || idx > this.length) throw new Error(`Invalid Index "${idx}"`);
+
 		if (idx === 0) return this.unshift(val);
 		if (idx === this.length) return this.push(val);
-		const node = this._get(idx);
+
+		const prev = this._get(idx - 1);
 		const newNode = new Node(val);
-		newNode.next = node;
-		const prevNode = this._get(idx - 1);
-		if (prevNode) prevNode.next = newNode;
+
+		newNode.next = prev.next;
+		prev.next = newNode;
+
 		this.length++;
 	}
 
