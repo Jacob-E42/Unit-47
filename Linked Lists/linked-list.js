@@ -118,7 +118,30 @@ class LinkedList {
 
 	/** removeAt(idx): return & remove item at idx, */
 
-	removeAt(idx) {}
+	removeAt(idx) {
+		if (idx < 0 || idx >= this.length) throw new Error(`Invalid Index "${idx}"`);
+
+		let removed;
+
+		//special case: removing the first item
+		if (idx === 0) {
+			removed = this.head;
+			this.head = removed.next;
+
+			//special case: if there were only 1 or 2 items, the tail becomes the same as the head
+			if (this.length < 3) this.tail = this.head;
+		} else {
+			const prev = this._get(idx - 1);
+			removed = prev.next;
+			prev.next = removed.next;
+
+			//special case: if the tail is being removed
+			if (idx === this.length - 1) this.tail = prev;
+		}
+
+		this.length--;
+		return removed.val;
+	}
 
 	/** average(): return an average of all values in the list */
 
