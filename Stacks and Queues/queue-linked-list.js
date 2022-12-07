@@ -43,7 +43,11 @@ class Queue {
 	/** peek(): return the value of the first node in the queue. */
 
 	peek() {
+<<<<<<< HEAD
 		return this.first.val;
+=======
+		return this._list.getAt(0);
+>>>>>>> fc8cc2c217cbe1e478937ab7dbff4fa42f3ffe24
 	}
 
 	/** isEmpty(): return true if the queue is empty, otherwise false */
