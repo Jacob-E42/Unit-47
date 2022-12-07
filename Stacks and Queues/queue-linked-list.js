@@ -1,4 +1,5 @@
 /** Node: node for a queue. */
+const LinkedList = require("./linked-list");
 
 class Node {
 	constructor(val) {
@@ -12,22 +13,18 @@ class Node {
 
 class Queue {
 	constructor() {
-		this.first = null;
-		this.last = null;
+		this._list = new LinkedList();
+		this.first = this._list.head;
+		this.last = this._list.tail;
 		this.size = 0;
 	}
 
 	/** enqueue(val): add new value to end of the queue. Returns undefined. */
 
 	enqueue(val) {
-		const node = new Node(val);
-		if (this.size === 0) {
-			this.first = node;
-			this.last = this.first;
-		} else {
-			this.last.next = node;
-			this.last = node;
-		}
+		this._list.push(val);
+		this.first = this._list.head;
+		this.last = this._list.tail;
 		this.size++;
 	}
 
@@ -36,28 +33,23 @@ class Queue {
 
 	dequeue() {
 		if (this.isEmpty()) throw new Error("Error: Queue is empty.");
-
-		const removed = this.first;
-		if (this.size === 1) {
-			this.first = null;
-			this.last = null;
-		} else {
-			this.first = this.first.next;
-		}
+		const removed = this._list.shift();
+		this.first = this._list.head;
+		this.last = this._list.tail;
 		this.size--;
-		return removed.val;
+		return removed;
 	}
 
 	/** peek(): return the value of the first node in the queue. */
 
 	peek() {
-		return this.first.val;
+		return this._list.getAt(0);
 	}
 
 	/** isEmpty(): return true if the queue is empty, otherwise false */
 
 	isEmpty() {
-		return this.size === 0;
+		return this._list.length === 0;
 	}
 }
 
