@@ -38,6 +38,16 @@ class BinaryTree {
 
 	maxDepth() {
 		if (!this.root) return 0;
+
+		const toVisit = [this.root];
+		let highestDepth = 1;
+		while (toVisit.length) {
+			let current = toVisit.pop();
+			if (!current.childrenAreNull()) highestDepth++;
+			if (current.left !== null) toVisit.push(current.left);
+			if (current.right !== null) toVisit.push(current.right);
+		}
+		return highestDepth;
 	}
 
 	/** maxSum(): return the maximum sum you can obtain by traveling along a path in the tree.
