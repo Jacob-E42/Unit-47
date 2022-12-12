@@ -1,94 +1,100 @@
 class Node {
-  constructor(val, left = null, right = null) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
-  }
+	constructor(val, left = null, right = null) {
+		this.val = val;
+		this.left = left;
+		this.right = right;
+	}
 }
 
 class BinarySearchTree {
-  constructor(root = null) {
-    this.root = root;
-  }
+	constructor(root = null) {
+		this.root = root;
+	}
 
-  /** insert(val): insert a new node into the BST with value val.
-   * Returns the tree. Uses iteration. */
+	/** insert(val): insert a new node into the BST with value val.
+	 * Returns the tree. Uses iteration. */
 
-  insert(val) {
+	insert(val) {
+		let node = new Node(val);
+		if (!this.root) {
+			this.root = node;
+			return this;
+		}
+		let current = this.root;
 
-  }
+		while (true) {
+			if (val < current.val) {
+				if (current.left !== null) {
+					current = current.left;
+				} else {
+					current.left = node;
+					return this;
+				}
+			} else if (val > current.val) {
+				if (current.right !== null) {
+					current = current.right;
+				} else {
+					current.right = node;
+					return this;
+				}
+			}
+		}
+		console.log(this, current.left, current.right, current.val);
+		// console.log(current);
+		return this;
+	}
 
-  /** insertRecursively(val): insert a new node into the BST with value val.
-   * Returns the tree. Uses recursion. */
+	/** insertRecursively(val): insert a new node into the BST with value val.
+	 * Returns the tree. Uses recursion. */
 
-  insertRecursively(val) {
+	insertRecursively(val) {}
 
-  }
+	/** find(val): search the tree for a node with value val.
+	 * return the node, if found; else undefined. Uses iteration. */
 
-  /** find(val): search the tree for a node with value val.
-   * return the node, if found; else undefined. Uses iteration. */
+	find(val) {}
 
-  find(val) {
+	/** findRecursively(val): search the tree for a node with value val.
+	 * return the node, if found; else undefined. Uses recursion. */
 
-  }
+	findRecursively(val) {}
 
-  /** findRecursively(val): search the tree for a node with value val.
-   * return the node, if found; else undefined. Uses recursion. */
+	/** dfsPreOrder(): Traverse the array using pre-order DFS.
+	 * Return an array of visited nodes. */
 
-  findRecursively(val) {
+	dfsPreOrder() {}
 
-  }
+	/** dfsInOrder(): Traverse the array using in-order DFS.
+	 * Return an array of visited nodes. */
 
-  /** dfsPreOrder(): Traverse the array using pre-order DFS.
-   * Return an array of visited nodes. */
+	dfsInOrder() {}
 
-  dfsPreOrder() {
+	/** dfsPostOrder(): Traverse the array using post-order DFS.
+	 * Return an array of visited nodes. */
 
-  }
+	dfsPostOrder() {}
 
-  /** dfsInOrder(): Traverse the array using in-order DFS.
-   * Return an array of visited nodes. */
+	/** bfs(): Traverse the array using BFS.
+	 * Return an array of visited nodes. */
 
-  dfsInOrder() {
+	bfs() {}
 
-  }
+	/** Further Study!
+	 * remove(val): Removes a node in the BST with the value val.
+	 * Returns the removed node. */
 
-  /** dfsPostOrder(): Traverse the array using post-order DFS.
-   * Return an array of visited nodes. */
+	remove(val) {}
 
-  dfsPostOrder() {
+	/** Further Study!
+	 * isBalanced(): Returns true if the BST is balanced, false otherwise. */
 
-  }
+	isBalanced() {}
 
-  /** bfs(): Traverse the array using BFS.
-   * Return an array of visited nodes. */
+	/** Further Study!
+	 * findSecondHighest(): Find the second highest value in the BST, if it exists.
+	 * Otherwise return undefined. */
 
-  bfs() {
-
-  }
-
-  /** Further Study!
-   * remove(val): Removes a node in the BST with the value val.
-   * Returns the removed node. */
-
-  remove(val) {
-
-  }
-
-  /** Further Study!
-   * isBalanced(): Returns true if the BST is balanced, false otherwise. */
-
-  isBalanced() {
-
-  }
-
-  /** Further Study!
-   * findSecondHighest(): Find the second highest value in the BST, if it exists.
-   * Otherwise return undefined. */
-
-  findSecondHighest() {
-    
-  }
+	findSecondHighest() {}
 }
 
 module.exports = BinarySearchTree;
