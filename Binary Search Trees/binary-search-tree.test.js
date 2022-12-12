@@ -41,7 +41,6 @@ describe("find", function () {
 		let binarySearchTree = new BinarySearchTree();
 		binarySearchTree.insert(15).insert(20).insert(10).insert(12);
 		var foundNode = binarySearchTree.find(20);
-		console.log(foundNode);
 		expect(foundNode.val).toBe(20);
 		expect(foundNode.left).toBe(null);
 		expect(foundNode.right).toBe(null);
