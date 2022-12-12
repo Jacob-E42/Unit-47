@@ -45,12 +45,10 @@ class BinarySearchTree {
 	 * Returns the tree. Uses recursion. */
 
 	insertRecursively(val, current = this.root) {
-		// let node = new Node(val);
 		if (!this.root) {
 			this.root = new Node(val);
 			return this;
 		}
-		// console.log(this);
 
 		if (val < current.val) {
 			if (current.left === null) {
@@ -58,10 +56,8 @@ class BinarySearchTree {
 				return this;
 			} else return this.insertRecursively(val, current.left);
 		} else if (val > current.val) {
-			// console.log(val, current, !current.right);
 			if (current.right === null) {
 				current.right = new Node(val);
-				// console.log(this, current.right);
 				return this;
 			} else return this.insertRecursively(val, current.right);
 		}
@@ -72,7 +68,17 @@ class BinarySearchTree {
 	/** find(val): search the tree for a node with value val.
 	 * return the node, if found; else undefined. Uses iteration. */
 
-	find(val) {}
+	find(val) {
+		let current = this.root;
+		while (current) {
+			if (val === current.val) {
+				return current;
+			} else if (val < current.val) {
+				current = current.left;
+			} else current = current.right;
+		}
+		return;
+	}
 
 	/** findRecursively(val): search the tree for a node with value val.
 	 * return the node, if found; else undefined. Uses recursion. */
