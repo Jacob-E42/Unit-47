@@ -53,12 +53,39 @@ class BinaryTree {
 	/** maxSum(): return the maximum sum you can obtain by traveling along a path in the tree.
 	 * The path doesn't need to start at the root, but you can't visit a node more than once. */
 
-	maxSum() {}
+	maxSum() {
+		let result = 0;
+
+		function maxSumHelper(current) {
+			if (current === null) return 0;
+			let leftbranch = maxSumHelper(current.left);
+			let rightbranch = maxSumHelper(current.right);
+			result = Math.max(result, current.val + rightbranch + leftbranch);
+			return Math.max(0, leftbranch + current.val, rightbranch + current.val);
+		}
+		maxSumHelper(this.root);
+		return result;
+	}
 
 	/** nextLarger(lowerBound): return the smallest value in the tree
 	 * which is larger than lowerBound. Return null if no such value exists. */
 
-	nextLarger(lowerBound) {}
+	nextLarger(lowerBound) {
+		if (!this.root) return null;
+		let nextLarger = null;
+		const largerValues = [];
+		const toVisit = [this.root];
+		while (toVisit.length) {
+			let current = toVisit.pop();
+			if (current.val > lowerBound) {
+				largerValues.push(current.val);
+				nextLarger = Math.min(...largerValues);
+			}
+			if (current.left !== null) toVisit.push(current.left);
+			if (current.right !== null) toVisit.push(current.right);
+		}
+		return nextLarger;
+	}
 
 	/** Further study!
 	 * areCousins(node1, node2): determine whether two nodes are cousins
