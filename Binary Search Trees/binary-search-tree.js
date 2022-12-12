@@ -107,17 +107,56 @@ class BinarySearchTree {
 	/** dfsInOrder(): Traverse the array using in-order DFS.
 	 * Return an array of visited nodes. */
 
-	dfsInOrder() {}
+	dfsInOrder() {
+		const visited = [];
+
+		function traverse(node) {
+			if (node.left) traverse(node.left);
+			if (node) visited.push(node.val);
+			if (node.right) traverse(node.right);
+		}
+		traverse(this.root);
+		return visited;
+	}
 
 	/** dfsPostOrder(): Traverse the array using post-order DFS.
 	 * Return an array of visited nodes. */
 
-	dfsPostOrder() {}
+	dfsPostOrder() {
+		const visited = [];
+
+		function traverse(node) {
+			if (node.left) traverse(node.left);
+			if (node.right) traverse(node.right);
+			if (node) visited.push(node.val);
+		}
+		traverse(this.root);
+		return visited;
+	}
 
 	/** bfs(): Traverse the array using BFS.
 	 * Return an array of visited nodes. */
 
-	bfs() {}
+	bfs() {
+		const visited = [];
+		const toVisit = [this.root];
+
+		function traverse(node) {
+			console.log(node);
+			if (node === null) return;
+			toVisit.shift();
+			visited.push(node.val);
+			if (node.left) {
+				toVisit.push(node.left);
+			}
+			if (node.right) {
+				toVisit.push(node.right);
+			}
+			if (toVisit.length > 0) traverse(toVisit[0]);
+		}
+		traverse(this.root);
+		return visited;
+	}
 
 	/** Further Study!
 	 * remove(val): Removes a node in the BST with the value val.
