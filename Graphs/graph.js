@@ -49,20 +49,39 @@ class Graph {
 	depthFirstSearch(start) {
 		const toVisitStack = [start];
 		const visited = new Set(toVisitStack);
+		const result = [];
 		while (toVisitStack.length) {
 			let currVertex = toVisitStack.pop();
+			result.push(currVertex.value);
+
 			for (let vertex of currVertex.adjacent) {
 				if (!visited.has(vertex)) {
+					toVisitStack.push(vertex);
 					visited.add(vertex);
-					toVisitStack.add(vertex);
 				}
 			}
 		}
-		return visited;
+
+		return result;
 	}
 
 	// this function returns an array of Node values using BFS
-	breadthFirstSearch(start) {}
+	breadthFirstSearch(start) {
+		const toVisitQueue = [start];
+		const visited = new Set(toVisitQueue);
+		const result = [];
+		while (toVisitQueue.length) {
+			let currVertex = toVisitQueue.shift();
+			result.push(currVertex.value);
+			for (let vertex of currVertex.adjacent) {
+				if (!visited.has(vertex)) {
+					visited.add(vertex);
+					toVisitQueue.push(vertex);
+				}
+			}
+		}
+		return result;
+	}
 }
 
 module.exports = { Graph, Node };
