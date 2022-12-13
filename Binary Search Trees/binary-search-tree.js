@@ -61,8 +61,6 @@ class BinarySearchTree {
 				return this;
 			} else return this.insertRecursively(val, current.right);
 		}
-		let next = val < current.val ? current.left : current.right;
-		return this.insertRecursively(val, next);
 	}
 
 	/** find(val): search the tree for a node with value val.
