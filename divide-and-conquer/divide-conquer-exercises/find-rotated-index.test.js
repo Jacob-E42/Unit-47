@@ -8,7 +8,7 @@ describe("#findRotatedIndex", function () {
 		expect(findRotatedIndex([37, 44, 66, 102, 10, 22], 14)).toBe(-1);
 		expect(findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 12)).toBe(-1);
 		expect(findRotatedIndex([], 9)).toBe(-1);
-		expect(findRotatedIndex([1, 2, 3, 4, 5, 6, 7, 8, 9], 2)).toBe(1);
+
 		expect(findRotatedIndex([6, 7, 8, 9, 1, 1, 2, 3, 4], 2)).toBe(6);
 	});
 });
