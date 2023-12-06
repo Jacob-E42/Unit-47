@@ -46,9 +46,8 @@ function findPivot(arr, num) {
 		else {
 			// let leftArray = arr.slice(0, middle + 1);
 			// let rightArray = arr.slice(middle + 1);
-			if (arr[0] > arr[middle]) {
-				right = middle;
-			} else left = middle + 1;
+			if (arr[0] > arr[middle]) right = middle;
+			else left = middle + 1;
 		}
 	}
 	return -1;
