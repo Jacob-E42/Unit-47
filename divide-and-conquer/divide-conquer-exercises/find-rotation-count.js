@@ -33,7 +33,20 @@
 // findRotationCount([7, 9, 11, 12, 15]) // 0
 function findRotationCount(arr) {
 	const pivot = findPivot(arr);
+	console.log("pivot", pivot);
 	if (pivot === -1) return 0;
-	else return;
+	else return pivot;
+}
+function findPivot(arr) {
+	let left = 0;
+	let right = arr.length - 1;
+	while (left <= right) {
+		let middle = Math.floor((left + right) / 2);
+		console.log("middle:", middle, "left:", left, "right:", right);
+		if (middle !== 0 && arr[middle] < arr[middle - 1]) return middle;
+		else if (arr[middle] > arr[middle - 1]) left = middle + 1;
+		else right = middle - 1;
+	}
+	return -1;
 }
 module.exports = findRotationCount;
