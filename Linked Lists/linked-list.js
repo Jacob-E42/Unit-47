@@ -252,13 +252,41 @@ class LinkedList {
 		return -1;
 	}
 
+	/** getNodeAt(idx): get val at idx. */
+
+	getNodeAt(idx) {
+		let currentNode = this.head;
+		for (let i = 0; i < this.length; i++) {
+			if (idx === i) return currentNode;
+			else {
+				currentNode = currentNode.next;
+			}
+		}
+		return -1;
+	}
+
 	/** setAt(idx, val): set val at idx to val */
 
-	setAt(idx, val) {}
+	setAt(idx, val) {
+		const node = this.getNodeAt(idx);
+		if (node !== -1) node.val = val;
+	}
 
 	/** insertAt(idx, val): add node w/val before idx. */
 
-	insertAt(idx, val) {}
+	insertAt(idx, val) {
+		const newNode = new Node(val);
+		if (idx === 0) {
+			newNode.next = this.head;
+			this.head = newNode;
+		} else {
+			const priorNode = this.getNodeAt(idx - 1);
+			const nextNode = priorNode.next;
+			priorNode.next = newNode;
+			newNode.next = nextNode;
+		}
+		this.length++;
+	}
 
 	/** removeAt(idx): return & remove item at idx, */
 

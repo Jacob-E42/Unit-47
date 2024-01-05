@@ -94,16 +94,16 @@ describe("getAt", function () {
 	});
 });
 
-// describe("setAt", function () {
-// 	it("sets val at index", function () {
-// 		let lst = new LinkedList([5, 10]);
+describe("setAt", function () {
+	it("sets val at index", function () {
+		let lst = new LinkedList([5, 10]);
 
-// 		expect(lst.setAt(0, 1));
-// 		expect(lst.setAt(1, 2));
-// 		expect(lst.head.val).toBe(1);
-// 		expect(lst.head.next.val).toBe(2);
-// 	});
-// });
+		expect(lst.setAt(0, 1));
+		expect(lst.setAt(1, 2));
+		expect(lst.head.val).toBe(1);
+		expect(lst.head.next.val).toBe(2);
+	});
+});
 
 // describe("insertAt", function () {
 // 	it("inserts node and adjusts nearby nodes", function () {
