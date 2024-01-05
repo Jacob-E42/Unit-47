@@ -223,11 +223,34 @@ class LinkedList {
 
 	/** shift(): return & remove first item. */
 
-	shift() {}
+	shift() {
+		if (!this.head) return null;
+		const item = this.head.val;
+
+		if (this.head === this.tail) {
+			this.head = null;
+			this.tail = null;
+		} else {
+			const prevHead = this.head;
+			this.head = prevHead.next;
+			prevHead.next = null;
+		}
+		this.length--;
+		return item;
+	}
 
 	/** getAt(idx): get val at idx. */
 
-	getAt(idx) {}
+	getAt(idx) {
+		let currentNode = this.head;
+		for (let i = 0; i < this.length; i++) {
+			if (idx === i) return currentNode.val;
+			else {
+				currentNode = currentNode.next;
+			}
+		}
+		return -1;
+	}
 
 	/** setAt(idx, val): set val at idx to val */
 
