@@ -279,6 +279,9 @@ class LinkedList {
 		if (idx === 0) {
 			newNode.next = this.head;
 			this.head = newNode;
+		} else if (idx === this.length) {
+			this.tail.next = newNode;
+			this.tail = newNode;
 		} else {
 			const priorNode = this.getNodeAt(idx - 1);
 			const nextNode = priorNode.next;
