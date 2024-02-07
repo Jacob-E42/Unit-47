@@ -121,54 +121,52 @@ describe("insertAt", function () {
 		expect(lst.head.next.next.next.next.next.val).toBe(25);
 		expect(lst.tail.val).toBe(25);
 	});
+
+	it("inserts into empty list", function () {
+		let lst = new LinkedList();
+
+		lst.insertAt(0, 5);
+		expect(lst.length).toBe(1);
+		expect(lst.head.val).toBe(5);
+		expect(lst.tail.val).toBe(5);
+	});
+});
+describe("removeAt", function () {
+	it("removes from 1-item list", function () {
+		let lst = new LinkedList(["a", "b", "c"]);
+
+		expect(lst.length).toBe(3);
+		expect(lst.head.val).toBe("a");
+		expect(lst.tail.val).toBe("c");
+
+		lst.removeAt(1);
+		expect(lst.length).toBe(2);
+		expect(lst.head.val).toBe("a");
+		expect(lst.head.next.val).toBe("c");
+		expect(lst.tail.val).toBe("c");
+		expect(lst.tail.next).toBe(null);
+
+		lst.removeAt(1);
+		expect(lst.length).toBe(1);
+		expect(lst.head.val).toBe("a");
+		expect(lst.tail.val).toBe("a");
+		expect(lst.tail.next).toBe(null);
+
+		lst.removeAt(0);
+		expect(lst.length).toBe(0);
+		expect(lst.head).toBe(null);
+		expect(lst.tail).toBe(null);
+	});
 });
 
-// 	it("inserts into empty list", function () {
-// 		let lst = new LinkedList();
+describe("average", function () {
+	it("calculates the average of items in a list", function () {
+		let lst = new LinkedList([2, 3, 1, 1, 7, 6, 9]);
+		expect(lst.average()).toBeCloseTo(4.1429, 4);
+	});
 
-// 		lst.insertAt(0, 5);
-// 		expect(lst.length).toBe(1);
-// 		expect(lst.head.val).toBe(5);
-// 		expect(lst.tail.val).toBe(5);
-// 	});
-// });
-
-// describe("removeAt", function () {
-// 	it("removes from 1-item list", function () {
-// 		let lst = new LinkedList(["a", "b", "c"]);
-
-// 		expect(lst.length).toBe(3);
-// 		expect(lst.head.val).toBe("a");
-// 		expect(lst.tail.val).toBe("c");
-
-// 		lst.removeAt(1);
-// 		expect(lst.length).toBe(2);
-// 		expect(lst.head.val).toBe("a");
-// 		expect(lst.head.next.val).toBe("c");
-// 		expect(lst.tail.val).toBe("c");
-// 		expect(lst.tail.next).toBe(null);
-
-// 		lst.removeAt(1);
-// 		expect(lst.length).toBe(1);
-// 		expect(lst.head.val).toBe("a");
-// 		expect(lst.tail.val).toBe("a");
-// 		expect(lst.tail.next).toBe(null);
-
-// 		lst.removeAt(0);
-// 		expect(lst.length).toBe(0);
-// 		expect(lst.head).toBe(null);
-// 		expect(lst.tail).toBe(null);
-// 	});
-// });
-
-// describe("average", function () {
-// 	it("calculates the average of items in a list", function () {
-// 		let lst = new LinkedList([2, 3, 1, 1, 7, 6, 9]);
-// 		expect(lst.average()).toBeCloseTo(4.1429, 4);
-// 	});
-
-// 	it("returns 0 for empty lists", function () {
-// 		let lst = new LinkedList();
-// 		expect(lst.average()).toBe(0);
-// 	});
-// });
+	it("returns 0 for empty lists", function () {
+		let lst = new LinkedList();
+		expect(lst.average()).toBe(0);
+	});
+});
