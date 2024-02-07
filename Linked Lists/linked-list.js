@@ -276,7 +276,10 @@ class LinkedList {
 
 	insertAt(idx, val) {
 		const newNode = new Node(val);
-		if (idx === 0) {
+		if (!this.head) {
+			this.head = newNode;
+			this.tail = newNode;
+		} else if (idx === 0) {
 			newNode.next = this.head;
 			this.head = newNode;
 		} else if (idx === this.length) {
@@ -293,11 +296,45 @@ class LinkedList {
 
 	/** removeAt(idx): return & remove item at idx, */
 
-	removeAt(idx) {}
+	removeAt(idx) {
+		const removedNode = this.getNodeAt(idx);
+		console.log(removedNode.val);
+		if (!removedNode) return null;
+		if (this.length === 1) {
+			this.head = null;
+			this.tail = null;
+		} else if (idx === 0) {
+			const nextNode = removedNode.next;
+
+			this.head = nextNode;
+		} else {
+			const priorNode = this.getNodeAt(idx - 1);
+			if (idx === this.length - 1) {
+				this.tail = priorNode;
+			}
+			const nextNode = removedNode.next;
+			priorNode.next = nextNode;
+		}
+
+		this.length--;
+		return removedNode.val;
+	}
 
 	/** average(): return an average of all values in the list */
 
-	average() {}
+	average() {
+		if (this.length === 1) return this.head.val;
+		if (this.length === 0) return 0;
+
+		let sum = 0;
+		let currentNode = this.head;
+		for (let i = 0; i < this.length; i++) {
+			sum += currentNode.val;
+
+			currentNode = currentNode.next;
+		}
+		return sum / this.length;
+	}
 }
 
 module.exports = LinkedList;
